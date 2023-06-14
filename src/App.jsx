@@ -1,23 +1,15 @@
-import { useEffect } from 'react'
-import './App.css'
-import Bandera from './Components/Bandera'
+
+import './App.css';
+import Flaggle from './componentes/Flaggle'
+
 function App() {
-
-  useEffect(() => {
-         const logDatos = async() => {
-           const response = await fetch('https://countriesnow.space/api/v0.1/countries/flag/images')
-           const data = await response.json()
-           console.log(data)
-         }
-        logDatos()
-     }, [])
-
-
   return (
-    <>
-    <Bandera/>
-    </>
-  )
+    <div className="App">
+      <header className="App-header">
+        <Flaggle></Flaggle>
+      </header>
+    </div>
+  );
 }
 
-export default App
+export default App;
