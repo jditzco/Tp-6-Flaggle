@@ -1,5 +1,5 @@
 import './App.css'
-import './Flaggle.css'
+import './Components/Flaggle.css'
 import React, {useState, useEffect } from "react"
 
 const App = () => {
@@ -32,19 +32,27 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (Bandera[Abandera].nombre == document.getElementsByName("pais")[0].value.toUpperCase()) {
-      document.getElementsByName("pais")[0].value = ''
-      setABandera(Math.floor(Math.random() * Bandera.length))
-      setPuntos((e) => e + 10)
-      console.log("correcto")
-      console.log(document.getElementsByName("pais")[0].value)
+    if (document.getElementById("input-bandera").value.length > Bandera[Abandera].nombre.length * 0.50 ){
+
+      if (Bandera[Abandera].nombre.includes(document.getElementsByName("pais")[0].value.toUpperCase()) ) {
+        document.getElementsByName("pais")[0].value = ''
+        setABandera(Math.floor(Math.random() * Bandera.length))
+        setPuntos((e) => e + 10)
+        console.log("correcto")
+        console.log(document.getElementsByName("pais")[0].value)
+      }
+      else {
+        document.getElementsByName("pais")[0].value = ''
+        setPuntos((e) => e - 1)
+        console.log("incorrecto")
+        console.log(document.getElementsByName("pais")[0].value)
+      }
+
     }
     else {
-      document.getElementsByName("pais")[0].value = ''
-      setPuntos((e) => e - 1)
-      console.log("incorrecto")
-      console.log(document.getElementsByName("pais")[0].value)
+      console.log("error no puede tener tan pocas letras")
     }
+    
   }
   return (
     <>
@@ -53,7 +61,7 @@ const App = () => {
       <div className="banderita" ></div>
       <form onSubmit={handleSubmit}>
         <div><img src={Bandera[Abandera].bandera} /></div>
-        <input type="text" name="pais" className="u-full-width" placeholder={Bandera[Abandera].nombre} />
+        <input type="text" id="input-bandera" name="pais" className="u-full-width" placeholder= "Que bandera es?" />
         <button type="submit" className="u-full-width button-primary">Submit</button>
         <h3>Puntos: {puntos}</h3>
       </form>
