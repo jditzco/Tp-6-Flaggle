@@ -9,7 +9,7 @@ const App = () => {
   const input = useRef()
 
   useEffect(() => {
-    fetch("https://countriesnow.space/api/v0.1/countries/flag/images")
+     fetch("https://countriesnow.space/api/v0.1/countries/flag/images")
     .then(res => res.json())
     .then(res => setListaBanderas(res.data))
   }, [])
@@ -19,19 +19,20 @@ const App = () => {
     setBandera(listaBanderas[Math.floor(Math.random() * listaBanderas.length)])
   }, [listaBanderas])
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log(input.current.value, bandera.name.length, bandera.name)
     if (input.current.value.length > Math.ceil(bandera.name.length * 0.5)){
 
       if (bandera.name.toUpperCase().includes(input.current.value.toUpperCase()) ) {
-        input.current.value = ''
-        setBandera(Math.floor(Math.random() * listaBanderas.length))
+        setBandera(listaBanderas[Math.floor(Math.random() * listaBanderas.length)])
         setPuntos(prevState => prevState + 10)
         console.log("correcto")
-        console.log(input.current.value)
+        input.current.value = ''
       }
       else {
-        input.current.value = ''
         setPuntos((e) => e - 1)
         console.log("incorrecto")
         console.log(input.current.value)
@@ -48,7 +49,7 @@ const App = () => {
     <>
       <h1>Banderas</h1>
       <h2>¿Sabes de donde es esta bandera?</h2>
-      <div className="banderita" ></div>
+      <div className="banderas" ></div>
       <form onSubmit={handleSubmit}>
         <div><img src={bandera?.flag} /></div>
         <input type="text" ref={input} id="input-bandera" name="pais" className="u-full-width" placeholder= "Que bandera es?" />
