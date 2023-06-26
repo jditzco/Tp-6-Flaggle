@@ -52,9 +52,12 @@ const App = () => {
       <div className="banderas" ></div>
       <form onSubmit={handleSubmit}>
         <div><img src={bandera?.flag} /></div>
-        <input type="text" ref={input} id="input-bandera" name="pais" className="u-full-width" placeholder= "Que bandera es?" />
-        <button type="submit" className="u-full-width button-primary">Submit</button>
+        <input type="text" ref={input} id="input-bandera" name="pais" className="imput-bandera" placeholder= "Que bandera es?" />
+        <button type="submit" className="button-primary">Submit</button>
+        <div className='puntos-container'>
         <h3>Puntos: {puntos}</h3>
+        </div>
+        
       </form>
     </>
   )

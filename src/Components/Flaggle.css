@@ -5,3 +5,10 @@ img{
 body{
   margin: 10px;
 }
+
+.puntos-container{
+  border-radius: 10px;
+  background-color: beige;
+  width: fit-content;
+
+}
